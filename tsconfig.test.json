@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "frontend",
+    "outDir": ".build",
+    "types": ["node"]
+  },
+  "include": ["frontend/src", "frontend/tests"]
+}

@@ -1,0 +1,172 @@
+.nx-fab {
+  position: fixed;
+  right: 20px;
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  z-index: 25;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 99px;
+  padding: 10px 18px 10px 10px;
+  background: linear-gradient(135deg, #7563c9, #4b3ba0);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(23, 21, 43, 0.35);
+}
+.nx-av {
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--lav);
+  color: var(--navy);
+  flex: none;
+}
+.nx-av .icon {
+  width: 60%;
+  height: 60%;
+}
+.nx-panel {
+  position: fixed;
+  right: 20px;
+  bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+  z-index: 25;
+  width: min(400px, calc(100vw - 24px));
+  max-height: calc(100vh - 120px);
+  overflow: auto;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 20px 50px rgba(23, 21, 43, 0.35);
+}
+.nx-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.nx-head .icon-btn {
+  font-size: 12px;
+  padding: 6px 10px;
+}
+.nx-ctx {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 12px;
+  color: var(--text-soft);
+  margin-bottom: 10px;
+}
+.nx-ag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 8px;
+}
+.nx-ag i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--muted);
+}
+.nx-ag i.on {
+  background: var(--ok);
+}
+.nx-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.nx-meta {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 11px;
+  color: var(--text-soft);
+  margin-top: 4px;
+}
+.src {
+  border: 1px solid var(--violet);
+  background: transparent;
+  color: var(--violet);
+  border-radius: 8px;
+  padding: 1px 8px;
+  font-size: 11px;
+  cursor: pointer;
+}
+.msg.bad {
+  border-color: var(--bad);
+  color: var(--bad);
+}
+.nx-sug {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  margin-bottom: 8px;
+}
+.nx-sug .tab {
+  white-space: nowrap;
+  font-size: 12px;
+  padding: 5px 10px;
+  font-weight: 500;
+}
+.nx-form {
+  display: flex;
+  gap: 6px;
+}
+.nx-tools {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.nx-tools .btn {
+  padding: 6px 12px;
+  font-size: 13px;
+}
+.typing {
+  display: flex;
+  gap: 4px;
+  padding: 12px 14px;
+}
+.typing i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--muted);
+  animation: nxb 1s infinite;
+}
+.typing i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.typing i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes nxb {
+  0%,
+  60%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .typing i {
+    animation: none;
+  }
+}
+.nx-full .chat {
+  max-height: 420px;
+}

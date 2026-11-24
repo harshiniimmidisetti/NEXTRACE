@@ -1,0 +1,9 @@
+SAMPLE DATA FROM "ANOTHER SOURCE" (synthetic) - paste into Assistant > "Send data from another source to ARCHIVE"
+File name: isp_reply.log
+Where it came from: ISP response (demo)
+
+2026-11-16T09:12:30Z INFO conn src=192.0.2.99 dst=203.0.113.45 port=443
+2026-11-16T09:41:00Z INFO conn src=192.0.2.99 dst=203.0.113.45 port=22
+2026-11-16T09:43:50Z INFO conn src=192.0.2.99 dst=198.51.100.5 port=22
+
+Then press "Review and analyze now", and ask: "where is 192.0.2.99", "tell me about EV-0006", "show IP addresses".

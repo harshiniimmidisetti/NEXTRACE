@@ -1,0 +1,113 @@
+/* Small single-purpose helpers. Loaded last so they win over component rules. */
+.muted {
+  color: var(--text-soft);
+}
+.muted-sm {
+  color: var(--text-soft);
+  font-size: 14px;
+}
+.grow {
+  flex: 1;
+}
+.pointer {
+  cursor: pointer;
+}
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.mt-0 {
+  margin-top: 0;
+}
+.mt-8 {
+  margin-top: 8px;
+}
+.mt-10 {
+  margin-top: 10px;
+}
+.mt-12 {
+  margin-top: 12px;
+}
+.mt-14 {
+  margin-top: 14px;
+}
+.mt-16 {
+  margin-top: 16px;
+}
+.mt-56 {
+  margin-top: 56px;
+}
+.mb-12 {
+  margin-bottom: 12px;
+}
+.mb-14 {
+  margin-bottom: 14px;
+}
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.surface {
+  background: var(--surface);
+}
+.workspace {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.report-pre {
+  white-space: pre-wrap;
+  max-height: 380px;
+  overflow: auto;
+}
+.summary-btn {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  cursor: pointer;
+}
+.btn-block {
+  width: 100%;
+  justify-content: center;
+}
+.btn-on-dark {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
+  align-self: flex-start;
+}
+.btn-who {
+  padding: 8px 0;
+  margin-top: 6px;
+}
+
+.tagline {
+  margin-top: 22px;
+  font-size: 14px;
+  color: var(--text-soft);
+}
+.cap-title {
+  font-size: 18px;
+  margin: 12px 0 6px;
+}
+.cap-text {
+  color: var(--text-soft);
+  font-size: 15px;
+}
+.dialog-actions {
+  margin-bottom: 0;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.nx-case {
+  max-width: 220px;
+  padding: 6px 8px;
+}
+.nx-sub {
+  font-size: 12px;
+  opacity: 0.8;
+}

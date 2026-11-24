@@ -1,0 +1,22 @@
+{
+  "name": "nextrace",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "NEXTRACE: AI-assisted digital forensics demo (TypeScript frontend, FastAPI backend)",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.test.json --noEmit",
+    "start": "npm run build && python3 -m http.server 8080 -d frontend",
+    "format": "prettier --write \"frontend/{src,tests,styles}/**/*.{ts,css}\" frontend/index.html",
+    "format:check": "prettier --check \"frontend/{src,tests,styles}/**/*.{ts,css}\" frontend/index.html",
+    "test:frontend": "tsc -p tsconfig.test.json && node --test --test-force-exit \".build/tests/*.test.js\"",
+    "test:backend": "python3 -m unittest discover -s backend/tests",
+    "test": "npm run test:frontend && npm run test:backend"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "prettier": "^3.3.0",
+    "typescript": "^5.6.0"
+  }
+}

@@ -1,0 +1,97 @@
+NEXTRACE DEMO SEED DATA
+All data below is SYNTHETIC. IPs use reserved documentation ranges (203.0.113.x, 198.51.100.x); domains use .example. No real people, banks or cases.
+
+DEMO ACCOUNTS (password for all: Demo@12345)
+  officer@demo.nextrace        Police Officer
+  investigator@demo.nextrace   Digital Forensic Investigator
+  admin@demo.nextrace          Administrator
+
+DEMO CASE: NXT-2026-0001 - Bank phishing email campaign (type: Phishing, priority High)
+Story: a phishing email from a lookalike domain is sent at 09:02 UTC on 2026-11-16; a workstation contacts the sender IP at 09:12; the same IP then makes 5 failed logins and a successful admin login (09:41-09:42), a 12,000-row data export (09:44) and an outbound transfer (09:44:30).
+
+Other demo cases in the dashboard table: NXT-2026-0002 Marketplace payment fraud; NXT-2026-0003 Unauthorised admin login; NXT-2026-0004 Fake profile harassment.
+
+EVIDENCE FILES
+
+EV-0001  phishing_email.eml  (EML)
+  Source: Complainant mailbox export | Uploaded by: Demo Officer | Date: 2026-11-16
+  Recorded SHA-256 : 45cab9f76b1acd58053c03b3098743e28244f9108f9a40d148f30f06194da785
+  Current SHA-256  : 45cab9f76b1acd58053c03b3098743e28244f9108f9a40d148f30f06194da785
+  Expected VERITY result: Verified
+  Content:
+    From: "SecureBank Alerts" <alerts@securebank-verify.example>
+    To: customer@mail.example
+    Date: Mon, 16 Nov 2026 09:02:11 +0000
+    Subject: Urgent: verify your account within 24 hours
+    X-Originating-IP: 203.0.113.45
+    
+    Dear customer, we detected unusual activity. Verify now:
+    http://securebank-verify.example/login?id=4471
+    If you do not act, your account will be suspended.
+
+EV-0002  reported_urls.csv  (CSV)
+  Source: Complaint intake form | Uploaded by: Demo Officer | Date: 2026-11-16
+  Recorded SHA-256 : 0d99fee0d088ea65a4c6e391e9d108284cba888ba11348b770c943ab72289d62
+  Current SHA-256  : 0d99fee0d088ea65a4c6e391e9d108284cba888ba11348b770c943ab72289d62
+  Expected VERITY result: Verified
+  Content:
+    url,first_seen,source
+    http://securebank-verify.example/login?id=4471,2026-11-16T09:05:00Z,user-report
+    https://www.securebank.example/help,2026-11-16T09:06:00Z,user-report
+
+EV-0003  server_auth.log  (LOG)
+  Source: Bank web server export | Uploaded by: Demo Investigator | Date: 2026-11-17
+  Recorded SHA-256 : 60f79d608c5298bb6b33b5bd7ef6e20725e71fa9cc1665d0d2589d965e323601
+  Current SHA-256  : 60f79d608c5298bb6b33b5bd7ef6e20725e71fa9cc1665d0d2589d965e323601
+  Expected VERITY result: Verified
+  Content:
+    2026-11-16T09:30:12Z INFO auth login ok user=priya ip=198.51.100.20
+    2026-11-16T09:41:02Z WARN auth failed user=admin ip=203.0.113.45
+    2026-11-16T09:41:20Z WARN auth failed user=admin ip=203.0.113.45
+    2026-11-16T09:41:38Z WARN auth failed user=admin ip=203.0.113.45
+    2026-11-16T09:41:55Z WARN auth failed user=admin ip=203.0.113.45
+    2026-11-16T09:42:10Z WARN auth failed user=admin ip=203.0.113.45
+    2026-11-16T09:42:31Z INFO auth login ok user=admin ip=203.0.113.45
+    2026-11-16T09:44:05Z WARN data export user=admin rows=12000 ip=203.0.113.45
+    2026-11-16T09:50:00Z INFO auth login ok user=ravi ip=198.51.100.31
+
+EV-0004  network_events.json  (JSON)
+  Source: (missing on purpose) | Uploaded by: Demo Investigator | Date: 2026-11-17
+  Recorded SHA-256 : 9dcc02e9998dff983c8f5428bb487ed5ffbd7f570a339329740a1b6bc3791cac
+  Current SHA-256  : 9dcc02e9998dff983c8f5428bb487ed5ffbd7f570a339329740a1b6bc3791cac
+  Expected VERITY result: Partially Verified (source missing)
+  Content:
+    [
+     {
+      "time": "2026-11-16T09:12:40Z",
+      "src": "198.51.100.77",
+      "dst": "203.0.113.45",
+      "port": 443,
+      "note": "workstation connected to sender IP"
+     },
+     {
+      "time": "2026-11-16T09:44:30Z",
+      "src": "203.0.113.45",
+      "dst": "198.51.100.5",
+      "port": 22,
+      "note": "outbound transfer after export"
+     }
+    ]
+
+EV-0005  auth_backup.log  (LOG)
+  Source: Backup server copy | Uploaded by: Demo Investigator | Date: 2026-11-17
+  Recorded SHA-256 : 2a619f6ee4a963f512c3a26faf819e9cedc50e62a27ba6bac64298efc5685472
+  Current SHA-256  : 3c30b597893f28f9620c1d59bc9cb26fee09c2263c60f94d78325d789599fcf7
+  Expected VERITY result: Failed (hash mismatch + out-of-order timestamps)
+  Content:
+    2026-11-16T09:42:31Z INFO auth login ok user=admin ip=203.0.113.45
+    2026-11-16T09:41:02Z WARN auth failed user=admin ip=203.0.113.45
+    2026-11-16T09:44:05Z WARN data export user=admin rows=2 ip=203.0.113.45
+
+EXPECTED CIPHER FINDINGS
+  1. Lookalike domain securebank-verify.example (Indicator, High) - EV-0001, EV-0002
+  2. Repeated failed logins from 203.0.113.45 then success and export (Fact, High) - EV-0003, EV-0005
+  3. IP 203.0.113.45 appears across 4 evidence files (Hypothesis, needs corroboration)
+
+EV-0005 is deliberately altered to demonstrate tamper detection: its recorded hash was taken from the original (rows=12000), but the file now says rows=2 and its lines are out of order.
+A matching hash never proves authenticity; findings are leads for the investigator, not conclusions about any person.
